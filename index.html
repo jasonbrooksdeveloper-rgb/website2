@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>A.Shridhar – Intro Animation</title>
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { height:100%; background:#000; overflow:hidden;
+    font-family:"Poppins","Segoe UI",Arial,sans-serif; color:#fff; }
+  video.stage { position:fixed; inset:0; width:100%; height:100vh;
+    object-fit:cover; background:#000; display:none; }
+  video.stage.on { display:block; }
+  /* loader */
+  #loader { position:fixed; inset:0; z-index:999; display:flex;
+    align-items:center; justify-content:center; background:#000; }
+  #loader img { width:200px; }
+  /* start screen */
+  #startScreen { position:fixed; inset:0; z-index:50; background:#000;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:34px; }
+  #startScreen img { width:276px; max-width:70vw; }
+  #StartBtn { background:transparent; border:1px solid #d4b453; color:#d4b453;
+    padding:14px 30px; font-size:18px; cursor:pointer; letter-spacing:.5px; }
+  #StartBtn:hover { background:#d4b453; color:#000; }
+  /* choice panel */
+  #InfoLogo { position:fixed; z-index:60; left:4%; top:50%; transform:translateY(-50%);
+    width:300px; display:none; }
+  #InfoLogo ul { list-style:none; display:flex; flex-direction:column; gap:18px;
+    align-items:flex-start; }
+  #infodetails { background:transparent; border:1px solid #fff; color:#fff;
+    padding:12px 20px; font-size:17px; max-width:300px; }
+  #InfoLogo .down { text-align:center; width:100%; }
+  #InfoLogo a { display:flex; align-items:center; cursor:pointer; }
+  #InfoLogo a img { height:50px; margin-right:14px;
+    filter:drop-shadow(0 0 6px rgba(0,0,0,.8)); }
+  #InfoLogo a span { font-weight:300; font-size:15px;
+    text-shadow:0 1px 4px #000; }
+  /* skip */
+  #Skipbtn { position:fixed; z-index:60; right:4%; bottom:6%; display:none;
+    background:rgba(0,0,0,.55); border:1px solid #fff; color:#fff;
+    padding:10px 22px; font-size:15px; cursor:pointer; }
+  /* next arrow */
+  .next_btn { position:fixed; z-index:60; top:44%; right:3%; display:none;
+    background:transparent; border:none; cursor:pointer; }
+  /* pause overlay : project name */
+  #pauseCard { position:fixed; z-index:60; left:50%; bottom:7%;
+    transform:translateX(-50%); display:none; text-align:center;
+    background:rgba(0,0,0,.55); border:1px solid #d4b453;
+    padding:14px 34px; }
+  #pauseCard h2 { font-weight:300; letter-spacing:1px; font-size:22px;
+    color:#d4b453; }
+  #pauseCard p { font-size:12px; opacity:.75; margin-top:4px; }
+  #pauseCard button { margin-top:10px; background:#d4b453; border:none;
+    color:#000; padding:8px 22px; font-size:14px; cursor:pointer; }
+  /* end card */
+  #endCard { position:fixed; inset:0; z-index:70; display:none;
+    align-items:center; justify-content:center; background:rgba(0,0,0,.72); }
+  #endCard .box { border:1px solid #d4b453; padding:38px 48px; text-align:center;
+    max-width:90vw; background:#000; }
+  #endCard h2 { color:#d4b453; font-weight:400; margin-bottom:10px; }
+  #endCard p { font-size:14px; opacity:.8; margin-bottom:20px; }
+  #endCard button { background:#d4b453; border:none; color:#000;
+    padding:10px 28px; font-size:15px; cursor:pointer; }
+  #hint { position:fixed; z-index:40; left:12px; bottom:10px; font-size:11px;
+    opacity:.45; }
+</style>
+</head>
+<body>
+
+<div id="loader"><img src="img/loader.gif" alt="loading"></div>
+
+<!-- START -->
+<div id="startScreen">
+  <img src="img/A-Shridhar logo-white.svg" alt="A.Shridhar">
+  <button id="StartBtn">Click here to begin the experience</button>
+</div>
+
+<!-- CHOICE -->
+<div id="InfoLogo">
+  <ul>
+    <li><button id="infodetails">Pick Your Choice</button></li>
+    <li class="down"><img src="gif/downarrow.gif" width="30" height="30" alt=""></li>
+    <li><a id="Athens_4"><img src="img/New Logo/Commercial icon.svg" alt=""><span>Commercial</span></a></li>
+    <li><a id="Kalrav_3"><img src="img/New Logo/Weekend Villas &amp; Plots icon.svg" alt=""><span>Weekend Villas &amp; Plots</span></a></li>
+    <li><a id="Anantara_2"><img src="img/New Logo/Elite Residences icon.svg" alt=""><span>Elite Residences</span></a></li>
+    <li><a id="Kaveri_1"><img src="img/New Logo/Mid-segment Luxurious Homes icon.svg" alt=""><span>Mid-segment Luxurious Homes</span></a></li>
+  </ul>
+</div>
+
+<button id="Skipbtn"><span id="some_div">8 Skip Now</span></button>
+<button class="next_btn" id="nextBtn"><img src="img/next_arrow.svg" width="30" alt="next"></button>
+
+<!-- VIDEOS (same files + timings as original site) -->
+<video class="stage" id="Title_Video" playsinline preload="auto" muted>
+  <source src="video/title_to_lift.mp4" type="video/mp4"></video>
+<video class="stage" id="Video_Kaveri_1" playsinline preload="auto" muted>
+  <source src="video/rCityAnimation.mp4" type="video/mp4"></video>
+<video class="stage" id="Video_Anantara_2" playsinline preload="auto" muted>
+  <source src="video/alora.mp4" type="video/mp4"></video>
+<video class="stage" id="Video_Kalrav_3" playsinline preload="auto" muted>
+  <source src="video/Kalrav_new.mp4" type="video/mp4"></video>
+<video class="stage" id="Video_Athens_4" playsinline preload="auto" muted>
+  <source src="video/absolute_new.mp4" type="video/mp4"></video>
+<video class="stage" id="Video_G_lift" playsinline preload="auto" muted>
+  <source src="video/to_lift.mp4" type="video/mp4"></video>
+
+<!-- pause overlay -->
+<div id="pauseCard">
+  <h2 id="pauseName"></h2>
+  <p>Intro demo — full project page not included</p>
+  <button id="pauseGo">View Project Details</button>
+</div>
+
+<!-- end card -->
+<div id="endCard">
+  <div class="box">
+    <h2>Intro demo ends here</h2>
+    <p id="endText">This is where the full website would open.</p>
+    <button onclick="location.reload()">Replay Experience</button>
+  </div>
+</div>
+
+<div id="hint">A.Shridhar intro animation (standalone demo, no sound)</div>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+  var titleV=$("Title_Video"), kaveriV=$("Video_Kaveri_1"),
+      anantaraV=$("Video_Anantara_2"), kalravV=$("Video_Kalrav_3"),
+      athensV=$("Video_Athens_4"), liftV=$("Video_G_lift");
+  var allV=[titleV,kaveriV,anantaraV,kalravV,athensV,liftV];
+  function show(v){ allV.forEach(function(x){x.classList.remove("on");}); v.classList.add("on"); }
+  function hideAllV(){ allV.forEach(function(x){x.pause();x.classList.remove("on");}); }
+  function showChoice(){ $("InfoLogo").style.display="block"; }
+  function hideChoice(){ $("InfoLogo").style.display="none"; }
+
+  /* loader */
+  window.addEventListener("load",function(){ $("loader").style.display="none"; });
+  setTimeout(function(){ $("loader").style.display="none"; },4000);
+
+  /* ---- START : title_to_lift, pause @15s, skip countdown ---- */
+  var skipTimer=null, timeLeft=8;
+  $("StartBtn").addEventListener("click",function(){
+    $("startScreen").style.display="none";
+    hideChoice(); $("Skipbtn").style.display="block";
+    show(titleV); titleV.currentTime=0; titleV.play();
+    timeLeft=8;
+    skipTimer=setInterval(function(){
+      if(timeLeft<0){ clearInterval(skipTimer); }
+      else { $("some_div").textContent=timeLeft+" Skip Now"; timeLeft--; }
+    },800);
+  });
+  var titleLast=0, skipShown=false, skipHidden=false, choiceShown=false;
+  titleV.addEventListener("timeupdate",function(){
+    var t=this.currentTime, last=titleLast; titleLast=t;
+    if(t>=1&&last<1&&!skipShown){ skipShown=true; $("Skipbtn").style.display="block"; }
+    if(t>=8&&last<8&&!skipHidden){ skipHidden=true; $("Skipbtn").style.display="none"; }
+    if(t>=15&&last<15&&!choiceShown){ choiceShown=true; this.pause(); showChoice(); }
+  });
+  $("Skipbtn").addEventListener("click",function(){
+    clearInterval(skipTimer); $("Skipbtn").style.display="none";
+    titleV.pause(); playLift();
+  });
+
+  /* ---- lift video : to_lift, choice @5s ---- */
+  var liftLast=0, liftChoice=false;
+  function playLift(){
+    hideAllV(); hideChoice(); hidePause();
+    $("nextBtn").style.display="none";
+    liftLast=0; liftChoice=false;
+    show(liftV); liftV.currentTime=0; liftV.play();
+  }
+  liftV.addEventListener("timeupdate",function(){
+    var t=this.currentTime, last=liftLast; liftLast=t;
+    if(t>=5&&last<5&&!liftChoice){ liftChoice=true; showChoice(); }
+  });
+
+  /* ---- category player (original pause-point timings) ---- */
+  var STOPS={
+    kaveri:{v:kaveriV,pts:[[7.4,"Rameshwar City"],[10.8,"Kaveri Soham Vistara"],
+      [15,"Kaveri Soham Vivanta"],[19,"Trident Elanzza"]],end:21},
+    anantara:{v:anantaraV,pts:[[7.5,"Anantara Alora"],[11,"Vaikunth"],
+      [15,"Anantara Alpines"],[19,"Anantara Abode"],
+      [22.5,"Anantara Imperial"],[25.5,"Anantara"]],end:28.3},
+    kalrav:{v:kalravV,pts:[[9.5,"Kalrav Seasons"],[13,"Kalrav Nest"],
+      [17,"Kalrav Treasure"],[21,"Kalrav Farms"],[24.5,"Kalrav Trails"]],end:27},
+    athens:{v:athensV,pts:[[9,"Absolute"],[13,"Athens"]],end:13.5}
+  };
+  var cur=null, curIdx=-1;
+  function playCat(key){
+    cur=STOPS[key]; curIdx=-1;
+    hideAllV(); hideChoice(); hidePause();
+    show(cur.v); cur.v.currentTime=0; cur.v.play();
+    // one listener per video, guarded by generation token
+    cur.v._gen=(cur.v._gen||0)+1;
+    var gen=cur.v._gen, last=0;
+    cur.v.ontimeupdate=function(){
+      if(cur.v._gen!==gen) return;
+      var t=cur.v.currentTime, l=last; last=t;
+      // pause points
+      for(var i=0;i<cur.pts.length;i++){
+        if(t>=cur.pts[i][0]&&l<cur.pts[i][0]){ pauseAt(i); return; }
+      }
+      // resume-hides + end
+      for(var j=0;j<cur.pts.length;j++){
+        var hideAt=cur.pts[j][0]+0.6;
+        if(t>=hideAt&&l<hideAt){ hidePause(); }
+      }
+      if(t>=cur.end&&l<cur.end){ playLift(); }
+    };
+  }
+  function pauseAt(i){
+    curIdx=i; cur.v.pause();
+    $("pauseName").textContent=cur.pts[i][1];
+    $("pauseCard").style.display="block";
+    $("nextBtn").style.display="block";
+  }
+  function hidePause(){ $("pauseCard").style.display="none";
+    $("nextBtn").style.display="none"; }
+  $("nextBtn").addEventListener("click",function(){
+    hidePause(); if(cur) cur.v.play();
+  });
+  $("Kaveri_1").addEventListener("click",function(){playCat("kaveri");});
+  $("Anantara_2").addEventListener("click",function(){playCat("anantara");});
+  $("Kalrav_3").addEventListener("click",function(){playCat("kalrav");});
+  $("Athens_4").addEventListener("click",function(){playCat("athens");});
+
+  /* project button -> end card (no full site in this demo) */
+  $("pauseGo").addEventListener("click",function(){
+    $("endText").textContent="“"+$("pauseName").textContent+
+      "” would open here in the full website.";
+    $("endCard").style.display="flex";
+  });
+})();
+</script>
+</body>
+</html>
